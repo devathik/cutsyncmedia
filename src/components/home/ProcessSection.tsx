@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { UploadCloud, Layers, Wand2, Sliders, CheckCircle2, Clock, Sparkles } from "lucide-react";
+import AnimatedSection from "@/components/ui/AnimatedSection";
 
 export default function ProcessSection() {
   const steps = [
@@ -58,7 +59,7 @@ export default function ProcessSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Title */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-20">
+        <AnimatedSection direction="down" duration={0.8} className="text-center max-w-3xl mx-auto space-y-4 mb-20">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/10 text-xs font-semibold text-purple-300">
             <Sparkles className="w-3.5 h-3.5 text-pink-400" />
             <span>THE CUTSYNC WORKFLOW</span>
@@ -69,31 +70,38 @@ export default function ProcessSection() {
           <p className="text-slate-300 text-base sm:text-lg">
             Our streamlined post-production pipeline delivers studio-quality edits without the headaches or long turnaround times.
           </p>
-        </div>
+        </AnimatedSection>
 
         {/* Timeline Pipeline */}
         <div className="relative">
           {/* Central Connecting Gradient Line for Desktop */}
-          <div className="hidden lg:block absolute left-1/2 top-10 bottom-10 w-1 bg-gradient-to-b from-sky-400 via-purple-600 to-pink-500 -translate-x-1/2 rounded-full opacity-40" />
+          <div className="hidden lg:block absolute left-1/2 top-10 bottom-10 w-1 bg-gradient-to-b from-sky-400 via-purple-600 to-pink-500 -translate-x-1/2 rounded-full opacity-50" />
 
           <div className="space-y-12 lg:space-y-16">
             {steps.map((item, idx) => {
               const Icon = item.icon;
               const isEven = idx % 2 === 0;
+              const cardAnimDir = isEven ? "left" : "right";
+
               return (
-                <motion.div
+                <div
                   key={item.step}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: idx * 0.1 }}
                   className={`relative flex flex-col lg:flex-row items-center ${
                     isEven ? "lg:flex-row-reverse" : ""
                   }`}
                 >
-                  {/* Left or Right Content Box */}
-                  <div className="w-full lg:w-1/2 p-4 sm:p-6">
-                    <div className="relative p-8 rounded-3xl bg-[#0E1338] border border-white/10 hover:border-sky-500/40 transition duration-300 shadow-xl space-y-4 group">
+                  {/* Left or Right Content Box coming dynamically from left/right */}
+                  <AnimatedSection
+                    direction={cardAnimDir}
+                    delay={0.1}
+                    duration={0.8}
+                    className="w-full lg:w-1/2 p-4 sm:p-6"
+                  >
+                    <motion.div
+                      whileHover={{ scale: 1.03, y: -4 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      className="relative p-8 rounded-3xl bg-[#0E1338] border border-white/10 hover:border-sky-500/40 transition duration-300 shadow-xl space-y-4 group"
+                    >
                       <div className="flex items-center justify-between">
                         <span className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-pink-500">
                           {item.step}
@@ -116,21 +124,30 @@ export default function ProcessSection() {
                       <p className="text-sm text-slate-300 leading-relaxed">
                         {item.description}
                       </p>
-                    </div>
-                  </div>
+                    </motion.div>
+                  </AnimatedSection>
 
-                  {/* Center Circle Node Icon */}
-                  <div className="my-4 lg:my-0 lg:absolute lg:left-1/2 lg:-translate-x-1/2 z-10 flex items-center justify-center">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-sky-400 via-purple-600 to-pink-500 p-0.5 shadow-lg shadow-purple-600/40">
+                  {/* Center Circle Node Icon scaling up from small to big */}
+                  <AnimatedSection
+                    direction="scale"
+                    delay={0.2}
+                    duration={0.6}
+                    className="my-4 lg:my-0 lg:absolute lg:left-1/2 lg:-translate-x-1/2 z-10 flex items-center justify-center"
+                  >
+                    <motion.div
+                      whileHover={{ scale: 1.2, rotate: 360 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                      className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-sky-400 via-purple-600 to-pink-500 p-0.5 shadow-lg shadow-purple-600/40 cursor-pointer"
+                    >
                       <div className="w-full h-full bg-[#090D28] rounded-[14px] flex items-center justify-center text-white">
                         <Icon className="w-6 h-6 text-sky-400" />
                       </div>
-                    </div>
-                  </div>
+                    </motion.div>
+                  </AnimatedSection>
 
                   {/* Empty Spacer Column for Desktop */}
                   <div className="hidden lg:block lg:w-1/2" />
-                </motion.div>
+                </div>
               );
             })}
           </div>

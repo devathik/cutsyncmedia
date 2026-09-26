@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { Play, Sparkles, ArrowRight, ShieldCheck, Flame, Scissors, Star, Layers, Eye } from "lucide-react";
 import { ProjectData } from "@/components/ui/VideoModal";
+import AnimatedSection from "@/components/ui/AnimatedSection";
 
 interface HeroProps {
   onOpenBooking: () => void;
@@ -23,7 +24,7 @@ export default function Hero({ onOpenBooking, onSelectProject }: HeroProps) {
       "A high-octane montage highlighting our best commercial edits, motion graphic sequences, color grading, and viral short-form cuts.",
     thumbnailUrl:
       "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&q=80",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Embed preview
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
   };
 
   return (
@@ -32,46 +33,48 @@ export default function Hero({ onOpenBooking, onSelectProject }: HeroProps) {
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <motion.div
           animate={{
-            scale: [1, 1.2, 1],
-            x: [0, 40, 0],
-            y: [0, -30, 0],
-          }}
-          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -top-40 left-1/4 w-[600px] h-[600px] bg-sky-600/20 rounded-full blur-[140px]"
-        />
-        <motion.div
-          animate={{
-            scale: [1.2, 1, 1.2],
-            x: [0, -50, 0],
-            y: [0, 50, 0],
-          }}
-          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/3 -right-20 w-[550px] h-[550px] bg-purple-600/25 rounded-full blur-[150px]"
-        />
-        <motion.div
-          animate={{
             scale: [1, 1.3, 1],
-            x: [0, 30, 0],
-            y: [0, 40, 0],
+            x: [0, 50, 0],
+            y: [0, -40, 0],
+            rotate: [0, 90, 0],
           }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -bottom-20 left-10 w-[500px] h-[500px] bg-pink-600/20 rounded-full blur-[140px]"
+          className="absolute -top-40 left-1/4 w-[650px] h-[650px] bg-sky-600/25 rounded-full blur-[140px]"
+        />
+        <motion.div
+          animate={{
+            scale: [1.3, 1, 1.3],
+            x: [0, -60, 0],
+            y: [0, 60, 0],
+            rotate: [0, -90, 0],
+          }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/3 -right-20 w-[600px] h-[600px] bg-purple-600/30 rounded-full blur-[150px]"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.4, 1],
+            x: [0, 40, 0],
+            y: [0, 50, 0],
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -bottom-20 left-10 w-[550px] h-[550px] bg-pink-600/25 rounded-full blur-[140px]"
         />
 
-        {/* Film Timeline Grid Lines Texture */}
+        {/* Grid lines background */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)]" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
-          {/* Left Column: Hero Text & CTAs */}
-          <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
+          {/* Left Column: Comes from LEFT with scale */}
+          <AnimatedSection direction="left" duration={0.8} className="lg:col-span-7 space-y-8 text-center lg:text-left">
             {/* Tagline Pill */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.05] border border-white/[0.12] backdrop-blur-md text-xs font-semibold text-sky-300 shadow-inner"
             >
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
@@ -79,11 +82,11 @@ export default function Hero({ onOpenBooking, onSelectProject }: HeroProps) {
               <span>PREMIUM VIDEO EDITING &amp; MOTION GRAPHICS AGENCY</span>
             </motion.div>
 
-            {/* Main Headline */}
+            {/* Headline */}
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
+              initial={{ x: -60, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="text-4xl sm:text-6xl xl:text-7xl font-extrabold text-white tracking-tight leading-[1.08]"
             >
               We Cut. <br className="hidden sm:inline" />
@@ -94,24 +97,24 @@ export default function Hero({ onOpenBooking, onSelectProject }: HeroProps) {
 
             {/* Subheadline */}
             <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              initial={{ x: -40, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
               className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed"
             >
               We transform raw footage into captivating, retention-engineered videos that dominate social algorithms, elevate brands, and convert viewers into loyal clients.
             </motion.p>
 
-            {/* CTA Buttons */}
+            {/* CTAs */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              initial={{ scale: 0.85, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
               className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2"
             >
               <button
                 onClick={onOpenBooking}
-                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-sky-400 via-purple-600 to-pink-500 text-white font-bold text-sm uppercase tracking-wider shadow-[0_0_30px_rgba(124,58,237,0.4)] hover:shadow-[0_0_45px_rgba(219,39,119,0.6)] hover:scale-[1.02] active:scale-[0.98] transition duration-300 flex items-center justify-center gap-2 group"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-sky-400 via-purple-600 to-pink-500 text-white font-bold text-sm uppercase tracking-wider shadow-[0_0_30px_rgba(124,58,237,0.4)] hover:shadow-[0_0_45px_rgba(219,39,119,0.6)] hover:scale-[1.05] active:scale-[0.98] transition duration-300 flex items-center justify-center gap-2 group"
               >
                 <span>Book Free Consultation</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -120,7 +123,7 @@ export default function Hero({ onOpenBooking, onSelectProject }: HeroProps) {
               <button
                 onClick={() => onSelectProject(heroProject)}
                 data-cursor="play"
-                className="w-full sm:w-auto px-7 py-4 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-slate-200 font-semibold text-sm flex items-center justify-center gap-3 backdrop-blur-md transition duration-300 hover:border-sky-400/50"
+                className="w-full sm:w-auto px-7 py-4 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-slate-200 font-semibold text-sm flex items-center justify-center gap-3 backdrop-blur-md transition duration-300 hover:border-sky-400/50 hover:scale-[1.03]"
               >
                 <div className="w-7 h-7 rounded-full bg-sky-500/20 flex items-center justify-center text-sky-400 border border-sky-400/40">
                   <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
@@ -131,9 +134,9 @@ export default function Hero({ onOpenBooking, onSelectProject }: HeroProps) {
 
             {/* Proof Badges */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.4 }}
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
               className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-slate-400 border-t border-white/10"
             >
               <div className="flex items-center gap-2">
@@ -171,29 +174,24 @@ export default function Hero({ onOpenBooking, onSelectProject }: HeroProps) {
                 <span>48-Hour Turnaround</span>
               </div>
             </motion.div>
-          </div>
+          </AnimatedSection>
 
-          {/* Right Column: Interactive Parallax Film Reel Preview Card */}
-          <div className="lg:col-span-5 relative flex justify-center">
+          {/* Right Column: Comes from RIGHT with scale (Small to Big) */}
+          <AnimatedSection direction="right" duration={0.9} delay={0.2} className="lg:col-span-5 relative flex justify-center">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 30 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.2 }}
+              whileHover={{ scale: 1.03, rotate: 0.5 }}
               onClick={() => onSelectProject(heroProject)}
               data-cursor="play"
-              className="video-card relative w-full max-w-md aspect-[4/5] rounded-3xl overflow-hidden bg-slate-900 border border-white/15 shadow-[0_0_50px_rgba(56,189,248,0.2)] group cursor-pointer"
+              className="video-card relative w-full max-w-md aspect-[4/5] rounded-3xl overflow-hidden bg-slate-900 border border-white/15 shadow-[0_0_50px_rgba(56,189,248,0.25)] group cursor-pointer transition-all duration-500"
             >
-              {/* Thumbnail Image */}
               <img
                 src={heroProject.thumbnailUrl}
                 alt="Showreel Preview"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
               />
 
-              {/* Glassmorphic Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#080B22] via-[#080B22]/30 to-transparent opacity-90 group-hover:opacity-75 transition-opacity" />
 
-              {/* Floating Top Reel Badge */}
               <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
                 <span className="px-3 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/15 text-[11px] font-semibold text-sky-400 flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
@@ -206,10 +204,9 @@ export default function Hero({ onOpenBooking, onSelectProject }: HeroProps) {
                 </span>
               </div>
 
-              {/* Center Play Button Overlay */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <motion.div
-                  whileHover={{ scale: 1.15 }}
+                  whileHover={{ scale: 1.25 }}
                   className="w-20 h-20 rounded-full bg-gradient-to-tr from-sky-400 via-purple-600 to-pink-500 p-0.5 shadow-[0_0_40px_rgba(219,39,119,0.7)] group-hover:shadow-[0_0_60px_rgba(56,189,248,0.9)] transition-shadow duration-300"
                 >
                   <div className="w-full h-full bg-[#090D28]/90 rounded-full flex items-center justify-center backdrop-blur-md">
@@ -218,7 +215,6 @@ export default function Hero({ onOpenBooking, onSelectProject }: HeroProps) {
                 </motion.div>
               </div>
 
-              {/* Bottom Card Information */}
               <div className="absolute bottom-5 left-5 right-5 p-4 rounded-2xl bg-white/[0.07] backdrop-blur-xl border border-white/15 space-y-1">
                 <div className="flex items-center justify-between text-xs text-sky-300 font-medium">
                   <span>SHOWREEL 2026</span>
@@ -231,11 +227,11 @@ export default function Hero({ onOpenBooking, onSelectProject }: HeroProps) {
               </div>
             </motion.div>
 
-            {/* Sub Floating Mini Widget 1 */}
+            {/* Floating Mini Widget 1 */}
             <motion.div
-              animate={{ y: [0, -10, 0] }}
+              animate={{ y: [0, -12, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-6 -left-6 hidden sm:flex items-center gap-3 p-3.5 rounded-2xl bg-[#0F1436]/90 border border-sky-400/30 backdrop-blur-xl shadow-xl z-20"
+              className="absolute -bottom-6 -left-6 hidden sm:flex items-center gap-3 p-3.5 rounded-2xl bg-[#0F1436]/95 border border-sky-400/40 backdrop-blur-xl shadow-2xl z-20"
             >
               <div className="w-10 h-10 rounded-xl bg-sky-500/20 flex items-center justify-center text-sky-400 border border-sky-400/40">
                 <Scissors className="w-5 h-5" />
@@ -246,11 +242,11 @@ export default function Hero({ onOpenBooking, onSelectProject }: HeroProps) {
               </div>
             </motion.div>
 
-            {/* Sub Floating Mini Widget 2 */}
+            {/* Floating Mini Widget 2 */}
             <motion.div
-              animate={{ y: [0, 10, 0] }}
+              animate={{ y: [0, 12, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-6 -right-6 hidden sm:flex items-center gap-3 p-3.5 rounded-2xl bg-[#0F1436]/90 border border-pink-500/30 backdrop-blur-xl shadow-xl z-20"
+              className="absolute -top-6 -right-6 hidden sm:flex items-center gap-3 p-3.5 rounded-2xl bg-[#0F1436]/95 border border-pink-500/40 backdrop-blur-xl shadow-2xl z-20"
             >
               <div className="w-10 h-10 rounded-xl bg-pink-500/20 flex items-center justify-center text-pink-400 border border-pink-500/40">
                 <Sparkles className="w-5 h-5" />
@@ -260,7 +256,7 @@ export default function Hero({ onOpenBooking, onSelectProject }: HeroProps) {
                 <div className="text-[10px] text-purple-300 font-semibold">DaVinci Color Pipeline</div>
               </div>
             </motion.div>
-          </div>
+          </AnimatedSection>
 
         </div>
       </div>

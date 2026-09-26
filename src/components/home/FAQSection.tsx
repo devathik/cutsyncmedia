@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, HelpCircle, Sparkles } from "lucide-react";
+import { ChevronDown, HelpCircle } from "lucide-react";
+import AnimatedSection from "@/components/ui/AnimatedSection";
 
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -49,7 +50,7 @@ export default function FAQSection() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}
-        <div className="text-center space-y-4 mb-16">
+        <AnimatedSection direction="down" duration={0.8} className="text-center space-y-4 mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/10 text-xs font-semibold text-sky-300">
             <HelpCircle className="w-3.5 h-3.5 text-pink-400" />
             <span>GOT QUESTIONS? WE&apos;VE GOT ANSWERS</span>
@@ -60,46 +61,52 @@ export default function FAQSection() {
           <p className="text-slate-300 text-base">
             Everything you need to know about our post-production process, file transfers, and editing guarantees.
           </p>
-        </div>
+        </AnimatedSection>
 
-        {/* Accordion List */}
+        {/* Accordion List with Staggered Left & Right Entrance */}
         <div className="space-y-4">
           {faqs.map((faq, idx) => {
             const isOpen = openIndex === idx;
-            return (
-              <div
-                key={idx}
-                className="rounded-2xl bg-[#0E1338] border border-white/10 overflow-hidden transition-all duration-300"
-              >
-                <button
-                  onClick={() => toggleFAQ(idx)}
-                  className="w-full p-6 text-left flex items-center justify-between gap-4 font-bold text-white hover:text-sky-300 transition-colors"
-                >
-                  <span className="text-base sm:text-lg">{faq.question}</span>
-                  <div
-                    className={`w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-sky-400 transition-transform duration-300 ${
-                      isOpen ? "rotate-180 bg-sky-500/20" : ""
-                    }`}
-                  >
-                    <ChevronDown className="w-5 h-5" />
-                  </div>
-                </button>
+            const animDir = idx % 2 === 0 ? "left" : "right";
 
-                <AnimatePresence>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
+            return (
+              <AnimatedSection
+                key={idx}
+                direction={animDir}
+                delay={idx * 0.08}
+                duration={0.6}
+              >
+                <div className="rounded-2xl bg-[#0E1338] border border-white/10 overflow-hidden transition-all duration-300 hover:border-sky-400/40">
+                  <button
+                    onClick={() => toggleFAQ(idx)}
+                    className="w-full p-6 text-left flex items-center justify-between gap-4 font-bold text-white hover:text-sky-300 transition-colors"
+                  >
+                    <span className="text-base sm:text-lg">{faq.question}</span>
+                    <div
+                      className={`w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-sky-400 transition-transform duration-300 ${
+                        isOpen ? "rotate-180 bg-sky-500/20" : ""
+                      }`}
                     >
-                      <div className="px-6 pb-6 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">
-                        {faq.answer}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                      <ChevronDown className="w-5 h-5" />
+                    </div>
+                  </button>
+
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <div className="px-6 pb-6 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">
+                          {faq.answer}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </AnimatedSection>
             );
           })}
         </div>
