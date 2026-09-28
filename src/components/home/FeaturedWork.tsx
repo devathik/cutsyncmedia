@@ -2,8 +2,9 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Play, Eye, Sparkles, Filter, Scissors, ExternalLink } from "lucide-react";
+import { Play, Eye, Scissors, ExternalLink } from "lucide-react";
 import { ProjectData } from "@/components/ui/VideoModal";
+import AnimatedSection from "@/components/ui/AnimatedSection";
 
 interface FeaturedWorkProps {
   onSelectProject: (project: ProjectData) => void;
@@ -108,14 +109,13 @@ export default function FeaturedWork({ onSelectProject, onOpenBooking }: Feature
       : portfolioItems.filter((item) => item.category === activeFilter);
 
   return (
-    <section id="portfolio" className="relative py-28 bg-[#070A1E] overflow-hidden">
-      {/* Film Strip Accents */}
+    <section id="portfolio" className="relative py-28 bg-black overflow-hidden border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <AnimatedSection direction="left" duration={0.8} className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/10 text-xs font-semibold text-sky-300">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-semibold text-sky-300">
               <Scissors className="w-3.5 h-3.5 text-pink-400" />
               <span>FEATURED WORK SHOWCASE</span>
             </div>
@@ -127,13 +127,13 @@ export default function FeaturedWork({ onSelectProject, onOpenBooking }: Feature
             </p>
           </div>
 
-          {/* Filter Tabs */}
-          <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md">
+          {/* Filter Tabs in Brand Gradient */}
+          <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-2xl bg-neutral-950 border border-white/10 backdrop-blur-md">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveFilter(cat)}
-                className={`relative px-4 py-2 rounded-xl text-xs font-semibold transition duration-300 ${
+                className={`relative px-4 py-2 rounded-xl text-xs font-semibold transition duration-300 cursor-pointer ${
                   activeFilter === cat
                     ? "text-white"
                     : "text-slate-400 hover:text-white"
@@ -142,7 +142,7 @@ export default function FeaturedWork({ onSelectProject, onOpenBooking }: Feature
                 {activeFilter === cat && (
                   <motion.div
                     layoutId="activeFilterTab"
-                    className="absolute inset-0 bg-gradient-to-r from-sky-500 via-purple-600 to-pink-600 rounded-xl shadow-lg shadow-purple-600/30"
+                    className="absolute inset-0 bg-gradient-to-r from-sky-400 via-purple-600 to-pink-500 rounded-xl shadow-lg shadow-purple-600/30"
                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
                 )}
@@ -150,7 +150,7 @@ export default function FeaturedWork({ onSelectProject, onOpenBooking }: Feature
               </button>
             ))}
           </div>
-        </div>
+        </AnimatedSection>
 
         {/* Video Cards Grid */}
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -165,20 +165,18 @@ export default function FeaturedWork({ onSelectProject, onOpenBooking }: Feature
                 key={project.id}
                 onClick={() => onSelectProject(project)}
                 data-cursor="play"
-                className="video-card group relative rounded-3xl overflow-hidden bg-[#0D1233] border border-white/10 hover:border-sky-400/50 transition-all duration-500 shadow-xl cursor-pointer flex flex-col"
+                className="video-card group relative rounded-3xl overflow-hidden bg-neutral-950 border border-white/10 hover:border-sky-400/50 transition-all duration-500 shadow-xl cursor-pointer flex flex-col"
               >
-                {/* Thumbnail Container */}
-                <div className="relative aspect-video w-full overflow-hidden bg-slate-950">
+                <div className="relative aspect-video w-full overflow-hidden bg-black">
                   <img
                     src={project.thumbnailUrl}
                     alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0D1233] via-transparent to-black/30" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30" />
 
-                  {/* Top Badges */}
                   <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                    <span className="px-3 py-1 rounded-full text-[11px] font-semibold bg-slate-950/80 backdrop-blur-md text-sky-400 border border-white/10">
+                    <span className="px-3 py-1 rounded-full text-[11px] font-semibold bg-black/80 backdrop-blur-md text-sky-400 border border-white/10">
                       {project.category}
                     </span>
                     <span className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-black/60 backdrop-blur-md text-slate-300">
@@ -186,17 +184,15 @@ export default function FeaturedWork({ onSelectProject, onOpenBooking }: Feature
                     </span>
                   </div>
 
-                  {/* Play Center Button Hover */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="w-14 h-14 rounded-full bg-gradient-to-tr from-sky-400 to-pink-500 p-0.5 shadow-lg shadow-pink-500/50 scale-90 group-hover:scale-100 transition-transform duration-300">
-                      <div className="w-full h-full bg-slate-950 rounded-full flex items-center justify-center text-white">
+                    <div className="w-14 h-14 rounded-full bg-gradient-to-tr from-sky-400 via-purple-600 to-pink-500 p-0.5 shadow-lg shadow-pink-500/50 scale-90 group-hover:scale-100 transition-transform duration-300">
+                      <div className="w-full h-full bg-black rounded-full flex items-center justify-center text-white">
                         <Play className="w-6 h-6 fill-current ml-0.5" />
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Card Content Info */}
                 <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                   <div>
                     <div className="flex items-center justify-between text-xs text-slate-400 mb-1">
@@ -218,7 +214,7 @@ export default function FeaturedWork({ onSelectProject, onOpenBooking }: Feature
                   <div className="pt-3 border-t border-white/10 flex items-center justify-between text-xs">
                     <div className="flex items-center gap-1.5">
                       {project.software.slice(0, 2).map((sw, i) => (
-                        <span key={i} className="px-2 py-0.5 rounded bg-white/5 text-[10px] text-slate-300">
+                        <span key={i} className="px-2 py-0.5 rounded bg-white/5 text-[10px] text-slate-300 border border-white/5">
                           {sw}
                         </span>
                       ))}
@@ -235,17 +231,17 @@ export default function FeaturedWork({ onSelectProject, onOpenBooking }: Feature
         </motion.div>
 
         {/* Bottom Banner */}
-        <div className="mt-16 text-center">
+        <AnimatedSection direction="scale" delay={0.2} className="mt-16 text-center">
           <p className="text-slate-400 text-sm mb-4">
             Need a custom edit format or specific brand style reference?
           </p>
           <button
             onClick={onOpenBooking}
-            className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-sky-400 via-purple-600 to-pink-500 text-white font-bold text-xs uppercase tracking-widest hover:opacity-95 shadow-lg shadow-purple-600/30 transition"
+            className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-sky-400 via-purple-600 to-pink-500 text-white font-bold text-xs uppercase tracking-widest hover:opacity-95 shadow-lg shadow-purple-600/30 transition hover:scale-105 cursor-pointer"
           >
             Request Custom Portfolio Demo
           </button>
-        </div>
+        </AnimatedSection>
 
       </div>
     </section>

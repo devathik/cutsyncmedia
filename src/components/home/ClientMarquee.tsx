@@ -17,7 +17,7 @@ export default function ClientMarquee() {
   ];
 
   return (
-    <section className="relative py-10 bg-[#070A1E] border-y border-white/[0.08] overflow-hidden">
+    <section className="relative py-10 bg-black border-y border-white/10 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 mb-6 text-center">
         <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest">
           Trusted By High-Growth Creators, Agencies &amp; Global Brands
@@ -31,9 +31,9 @@ export default function ClientMarquee() {
             return (
               <div
                 key={idx}
-                className="flex items-center gap-3 px-5 py-2.5 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-sky-500/40 hover:bg-white/[0.06] transition-all duration-300 group cursor-default"
+                className="flex items-center gap-3 px-5 py-2.5 rounded-xl bg-neutral-950 border border-white/10 hover:border-sky-500/50 hover:bg-neutral-900 transition-all duration-300 group cursor-default shadow-md"
               >
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-sky-500/20 to-purple-500/20 flex items-center justify-center text-sky-400 group-hover:scale-110 transition-transform">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-sky-500/20 via-purple-500/20 to-pink-500/20 flex items-center justify-center text-sky-400 group-hover:scale-110 transition-transform border border-sky-400/20">
                   <Icon className="w-4 h-4" />
                 </div>
                 <div>

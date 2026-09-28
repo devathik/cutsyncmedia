@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, Quote, ChevronLeft, ChevronRight, Sparkles, CheckCircle2 } from "lucide-react";
+import AnimatedSection from "@/components/ui/AnimatedSection";
 
 export default function TestimonialsSection() {
   const testimonials = [
@@ -48,15 +49,14 @@ export default function TestimonialsSection() {
   const current = testimonials[currentIndex];
 
   return (
-    <section id="testimonials" className="relative py-28 bg-[#090D28] overflow-hidden">
-      {/* Glow */}
-      <div className="absolute top-1/3 right-10 w-96 h-96 bg-pink-600/10 rounded-full blur-3xl pointer-events-none" />
+    <section id="testimonials" className="relative py-28 bg-black overflow-hidden border-b border-white/10">
+      <div className="absolute top-1/3 right-10 w-96 h-96 bg-pink-600/10 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/10 text-xs font-semibold text-sky-300">
+        <AnimatedSection direction="down" duration={0.8} className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-semibold text-sky-300">
             <Sparkles className="w-3.5 h-3.5 text-pink-400" />
             <span>CLIENT REVIEWS &amp; CASE STUDIES</span>
           </div>
@@ -66,18 +66,18 @@ export default function TestimonialsSection() {
           <p className="text-slate-300 text-base sm:text-lg">
             See how our retention-engineered post-production helps creators build audiences and brands scale revenue.
           </p>
-        </div>
+        </AnimatedSection>
 
         {/* Testimonial Card Slider */}
-        <div className="max-w-4xl mx-auto relative">
+        <AnimatedSection direction="scale" duration={0.8} className="max-w-4xl mx-auto relative">
           <AnimatePresence mode="wait">
             <motion.div
               key={current.id}
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
+              exit={{ opacity: 0, x: -40 }}
               transition={{ duration: 0.5 }}
-              className="relative p-8 sm:p-12 rounded-3xl bg-[#0E1338] border border-white/10 shadow-[0_0_50px_rgba(124,58,237,0.2)] space-y-8"
+              className="relative p-8 sm:p-12 rounded-3xl bg-neutral-950 border border-white/10 shadow-[0_0_50px_rgba(124,58,237,0.2)] space-y-8"
             >
               <div className="flex items-center justify-between">
                 <div className="flex text-amber-400 gap-1">
@@ -121,8 +121,8 @@ export default function TestimonialsSection() {
                 <button
                   key={i}
                   onClick={() => setCurrentIndex(i)}
-                  className={`h-2.5 rounded-full transition-all duration-300 ${
-                    currentIndex === i ? "w-8 bg-sky-400" : "w-2.5 bg-white/20"
+                  className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                    currentIndex === i ? "w-8 bg-gradient-to-r from-sky-400 to-pink-500" : "w-2.5 bg-white/20"
                   }`}
                   aria-label={`Go to slide ${i + 1}`}
                 />
@@ -132,14 +132,14 @@ export default function TestimonialsSection() {
             <div className="flex items-center gap-3">
               <button
                 onClick={prevTestimonial}
-                className="p-3 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 transition"
+                className="p-3 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 transition cursor-pointer"
                 aria-label="Previous testimonial"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
               <button
                 onClick={nextTestimonial}
-                className="p-3 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 transition"
+                className="p-3 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 transition cursor-pointer"
                 aria-label="Next testimonial"
               >
                 <ChevronRight className="w-5 h-5" />
@@ -147,7 +147,7 @@ export default function TestimonialsSection() {
             </div>
           </div>
 
-        </div>
+        </AnimatedSection>
 
       </div>
     </section>

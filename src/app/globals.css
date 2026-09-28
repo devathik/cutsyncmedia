@@ -2,7 +2,7 @@
 
 @layer base {
   :root {
-    --background: #090D28;
+    --background: #000000;
     --foreground: #F5F5FA;
   }
 
@@ -38,17 +38,17 @@
   animation-play-state: paused;
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar for Pure Black Theme */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #070A1E;
+  background: #000000;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1E265C;
+  background: #1e1b4b;
   border-radius: 4px;
 }
 

@@ -51,7 +51,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${sora.variable} ${inter.variable} dark scroll-smooth`}>
-      <body className="bg-[#090D28] text-[#F5F5FA] antialiased selection:bg-pink-500 selection:text-white">
+      <body className="bg-black text-[#F5F5FA] antialiased selection:bg-pink-500 selection:text-white">
         {children}
       </body>
     </html>

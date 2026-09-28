@@ -28,7 +28,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#090D28] text-white selection:bg-pink-500 selection:text-white">
+    <div className="relative min-h-screen bg-black text-white selection:bg-pink-500 selection:text-white">
       {/* Magnetic Custom Cursor */}
       <CustomCursor />
 

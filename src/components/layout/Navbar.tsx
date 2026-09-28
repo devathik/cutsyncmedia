@@ -40,7 +40,7 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           scrolled
-            ? "bg-[#090D28]/85 backdrop-blur-xl border-b border-white/[0.08] shadow-[0_4px_30px_rgba(0,0,0,0.5)] py-3"
+            ? "bg-black/90 backdrop-blur-xl border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.9)] py-3"
             : "bg-transparent py-5"
         }`}
       >
@@ -59,16 +59,16 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
                 className="relative text-sm font-medium text-slate-300 hover:text-white transition-colors py-1 group"
               >
                 <span>{link.name}</span>
-                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-sky-400 via-purple-500 to-pink-500 transition-all duration-300 group-hover:w-full rounded-full" />
+                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-sky-400 via-purple-600 to-pink-500 transition-all duration-300 group-hover:w-full rounded-full" />
               </a>
             ))}
           </nav>
 
-          {/* Desktop Right CTA */}
+          {/* Desktop Right CTA in Brand Gradient */}
           <div className="hidden md:flex items-center gap-4">
             <a
               href="#portfolio"
-              className="text-xs font-semibold text-slate-300 hover:text-sky-300 flex items-center gap-1.5 transition-colors"
+              className="text-xs font-semibold text-slate-300 hover:text-sky-400 flex items-center gap-1.5 transition-colors"
             >
               <PlayCircle className="w-4 h-4 text-purple-400" />
               Showreel
@@ -76,10 +76,10 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
 
             <button
               onClick={onOpenBooking}
-              className="relative group p-[1px] rounded-xl overflow-hidden font-semibold text-xs tracking-wider uppercase transition-transform active:scale-95"
+              className="relative group p-[1px] rounded-xl overflow-hidden font-semibold text-xs tracking-wider uppercase transition-transform active:scale-95 shadow-[0_0_20px_rgba(124,58,237,0.3)]"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-sky-400 via-purple-600 to-pink-500 transition-all group-hover:opacity-90" />
-              <span className="relative px-5 py-2.5 rounded-[11px] bg-[#0B0F2C] text-white flex items-center gap-2 group-hover:bg-transparent transition duration-300">
+              <span className="relative px-5 py-2.5 rounded-[11px] bg-black text-white flex items-center gap-2 group-hover:bg-transparent transition duration-300">
                 <Sparkles className="w-3.5 h-3.5 text-sky-400 group-hover:text-white transition" />
                 <span>Book Consultation</span>
               </span>
@@ -90,7 +90,7 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
           <div className="flex md:hidden items-center gap-3">
             <button
               onClick={onOpenBooking}
-              className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-gradient-to-r from-sky-400 to-purple-600 text-white"
+              className="px-3.5 py-1.5 text-xs font-bold rounded-lg bg-gradient-to-r from-sky-400 via-purple-600 to-pink-500 text-white shadow-md"
             >
               Consult
             </button>
@@ -113,7 +113,7 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-30 bg-[#070A1E]/98 backdrop-blur-2xl md:hidden pt-24 px-6 flex flex-col justify-between pb-10"
+            className="fixed inset-0 z-30 bg-black/98 backdrop-blur-2xl md:hidden pt-24 px-6 flex flex-col justify-between pb-10"
           >
             <div className="space-y-6">
               <div className="text-xs font-semibold text-purple-400 uppercase tracking-widest flex items-center gap-2">
@@ -144,7 +144,7 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
                   setMobileMenuOpen(false);
                   onOpenBooking();
                 }}
-                className="w-full py-4 rounded-xl bg-gradient-to-r from-sky-400 via-purple-600 to-pink-500 text-white font-bold text-sm tracking-wide shadow-lg shadow-purple-600/30 flex items-center justify-center gap-2"
+                className="w-full py-4 rounded-xl bg-gradient-to-r from-sky-400 via-purple-600 to-pink-500 text-white font-bold text-sm tracking-wide shadow-lg shadow-purple-600/40 flex items-center justify-center gap-2"
               >
                 <PhoneCall className="w-4 h-4" />
                 Book Free Consultation

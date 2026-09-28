@@ -18,9 +18,9 @@ export default function Footer({ onOpenBooking }: FooterProps) {
   ];
 
   return (
-    <footer className="relative bg-[#050716] border-t border-white/10 text-slate-400 overflow-hidden pt-20 pb-12">
+    <footer className="relative bg-black border-t border-white/10 text-slate-400 overflow-hidden pt-20 pb-12">
       {/* Decorative Large Background Wordmark Backdrop */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none select-none text-[12vw] font-black text-white/[0.02] tracking-tighter uppercase whitespace-nowrap">
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none select-none text-[12vw] font-black text-white/[0.03] tracking-tighter uppercase whitespace-nowrap">
         CutSync Media
       </div>
 
@@ -42,7 +42,7 @@ export default function Footer({ onOpenBooking }: FooterProps) {
                     key={soc.name}
                     href={soc.href}
                     aria-label={soc.name}
-                    className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white hover:bg-gradient-to-tr hover:from-sky-500 hover:to-pink-500 hover:border-transparent transition duration-300 shadow-md"
+                    className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white hover:bg-gradient-to-tr hover:from-sky-400 hover:via-purple-600 hover:to-pink-500 hover:border-transparent transition duration-300 shadow-md"
                   >
                     <Icon className="w-5 h-5" />
                   </a>
@@ -59,7 +59,7 @@ export default function Footer({ onOpenBooking }: FooterProps) {
                 <li key={item}>
                   <a
                     href={`#${item.toLowerCase().replace(/\s+/g, "")}`}
-                    className="hover:text-sky-300 transition-colors flex items-center gap-1 group"
+                    className="hover:text-sky-400 transition-colors flex items-center gap-1 group"
                   >
                     <span>{item}</span>
                     <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition" />
@@ -84,7 +84,7 @@ export default function Footer({ onOpenBooking }: FooterProps) {
                 <li key={service}>
                   <button
                     onClick={onOpenBooking}
-                    className="hover:text-pink-300 transition-colors text-left"
+                    className="hover:text-pink-400 transition-colors text-left cursor-pointer"
                   >
                     {service}
                   </button>
